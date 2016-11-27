@@ -25,8 +25,6 @@ final class ComposerHelper
 
     /**
      * @return PackageInterface[]
-     *
-     * @throws ComposerPackageNotFound
      */
     public static function getRequiredPackages()
     {
@@ -35,8 +33,6 @@ final class ComposerHelper
 
     /**
      * @return PackageInterface[]
-     *
-     * @throws ComposerPackageNotFound
      */
     public static function getRequiredDevPackages()
     {
@@ -47,22 +43,23 @@ final class ComposerHelper
      * @param Link[] $links
      *
      * @return PackageInterface[]
-     *
-     * @throws ComposerPackageNotFound
      */
     private static function getPackagesFromLinks(array $links)
     {
-        return array_map(function (Link $link) {
-            return self::getPackageFromLink($link);
-        }, array_values($links));
+        $packages = [];
+        foreach ($links as $link) {
+            if ($package = self::getPackageFromLink($link)) {
+                $packages[] = $package;
+            }
+        }
+
+        return $packages;
     }
 
     /**
      * @param Link $link
      *
-     * @return PackageInterface
-     *
-     * @throws ComposerPackageNotFound
+     * @return PackageInterface|null
      */
     private static function getPackageFromLink(Link $link)
     {
@@ -73,7 +70,7 @@ final class ComposerHelper
             return $package;
         }
 
-        throw new ComposerPackageNotFound($link->getTarget());
+        return null;
     }
 
     /**

@@ -11,7 +11,6 @@ use Composer\Repository\RepositoryInterface;
 use Composer\Repository\RepositoryManager;
 use Composer\Semver\Constraint\ConstraintInterface;
 use Prophecy\Prophecy\ObjectProphecy;
-use carlosV2\Allegro\ComposerPackageNotFound;
 
 class ComposerHelperTest extends \PHPUnit_Framework_TestCase
 {
@@ -63,10 +62,8 @@ class ComposerHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function itThrowsAnExceptionIfARequiredPackageIsNotFound()
+    public function itIgnoresRequiredPackagesIfNotFound()
     {
-        $this->setExpectedException(ComposerPackageNotFound::class);
-
         $rootPackage = $this->prophesize(RootPackageInterface::class);
         $this->composer->getPackage()->willReturn($rootPackage);
 
@@ -82,7 +79,7 @@ class ComposerHelperTest extends \PHPUnit_Framework_TestCase
 
         $repository->findPackage('my/package', $constraint)->willReturn(null);
 
-        ComposerHelper::getRequiredPackages();
+        $this->assertEquals([], ComposerHelper::getRequiredPackages());
     }
 
     /** @test */
@@ -108,10 +105,8 @@ class ComposerHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function itThrowsAnExceptionIfADevRequiredPackageIsNotFound()
+    public function itIgnoresRequiredDevPackagesIfNotFound()
     {
-        $this->setExpectedException(ComposerPackageNotFound::class);
-
         $rootPackage = $this->prophesize(RootPackageInterface::class);
         $this->composer->getPackage()->willReturn($rootPackage);
 
@@ -127,7 +122,7 @@ class ComposerHelperTest extends \PHPUnit_Framework_TestCase
 
         $repository->findPackage('my/package', $constraint)->willReturn(null);
 
-        ComposerHelper::getRequiredDevPackages();
+        $this->assertEquals([], ComposerHelper::getRequiredDevPackages());
     }
 
     /**
