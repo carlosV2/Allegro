@@ -1,0 +1,35 @@
+{
+    "name": "carlosv2/allegro",
+    "type": "library",
+    "description": "Symfony bundles autoloader",
+    "keywords": ["Symfony", "Bundle", "Autoload"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carlos Ortega",
+            "email": "carlosV2.0@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "carlosV2\\Allegro\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "test\\carlosV2\\Allegro\\": "tests"
+        }
+    },
+    "require": {
+        "php": ">=5.5",
+        "composer/composer": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
