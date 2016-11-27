@@ -1,7 +1,10 @@
 # Allegro
 
-Symfony bundles autoloader
+Symfony bundles autoloader.
 
+[![License](https://poser.pugx.org/carlosv2/allegro/license)](https://packagist.org/packages/carlosv2/allegro)
+[![Build Status](https://travis-ci.org/carlosV2/Allegro.svg?branch=master)](https://travis-ci.org/carlosV2/Allegro)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/bba642c5-4e7e-48b1-97b1-b0423c3cf329/mini.png)](https://insight.sensiolabs.com/projects/bba642c5-4e7e-48b1-97b1-b0423c3cf329)
 
 ## Why
 
