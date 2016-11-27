@@ -63,13 +63,11 @@ each required package:
 
 ```json
 {
-    ...
     "extra": {
         "symfony": {
-            "bundles": ["Namespace\BundleClass"]
+            "bundles": ["Namespace\\BundleClass"]
         }
-    },
-    ...
+    }
 }
 ```
 
